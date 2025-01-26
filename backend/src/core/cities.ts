@@ -40,7 +40,7 @@ export async function search(query: string) {
  * Obtiene todos los detalles de una ciudad por su slug.
  */
 export async function getBySlug(slug: string) {
-  const places = await getFilteredPlaces()
+  const places = await getFilteredPlaces(slug)
   const city = places.find((place) => place.slug === slug)
   if (!city) {
     return null
