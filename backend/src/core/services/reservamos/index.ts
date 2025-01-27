@@ -1,5 +1,5 @@
-import { UnexpectedServiceError } from "@/core/services/errors"
-import type { PlacesResponse } from "./types.js"
+import { UnexpectedServiceError } from "../errors"
+import type { PlacesResponse } from "./types"
 
 const BASE_URL = "https://search.reservamos.mx/api/v2"
 

@@ -1,7 +1,7 @@
-import { redis } from "./redis"
-import * as OpenWeatherService from "@/core/services/open-weather"
-import type { ForecastResponse } from "@/core/services/open-weather/types"
 import { z } from "zod"
+import { redis } from "./redis"
+import * as OpenWeatherService from "./services/open-weather"
+import type { ForecastResponse } from "./services/open-weather/types"
 
 export const forecastSchema = z.object({
   timestamp: z.number(),

@@ -1,7 +1,7 @@
-import * as ReservamosService from "@/core/services/reservamos"
 import { z } from "zod"
 import { forecastSchema, getForecast } from "./forecast"
-import type { PlacesResponse } from "@/core/services/reservamos/types"
+import * as ReservamosService from "./services/reservamos"
+import type { PlacesResponse } from "./services/reservamos/types"
 
 export const citySchema = z.object({
   display_name: z.string(),

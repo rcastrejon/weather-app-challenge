@@ -1,6 +1,6 @@
-import env from "@/env"
-import { UnexpectedServiceError } from "@/core/services/errors"
-import type { ForecastResponse } from "./types.js"
+import env from "../../../env"
+import { UnexpectedServiceError } from "../errors"
+import type { ForecastResponse } from "./types"
 
 const BASE_URL = "https://api.openweathermap.org/data/2.5"
 

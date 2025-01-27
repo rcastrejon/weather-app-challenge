@@ -1,6 +1,6 @@
 import { Hono } from "hono"
-import * as Cities from "@/core/cities"
 import { HTTPException } from "hono/http-exception"
+import * as Cities from "../core/cities"
 
 const router = new Hono()
   .get("/cities/search", async (c) => {
