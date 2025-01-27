@@ -7,8 +7,7 @@ interface ForecastCardProps {
     timestamp: number
     weather_icon: string
     weather_description: string
-    temp_max: number
-    temp_min: number
+    temp: number
   }
 }
 
@@ -33,9 +32,8 @@ export function ForecastCard({ forecast }: ForecastCardProps) {
         <span className="text-sm text-white/80 text-center">
           {forecast.weather_description}
         </span>
-        <span className="text-sm font-medium text-white">
-          Máx:{Math.round(forecast.temp_max)}° Mín:
-          {Math.round(forecast.temp_min)}°
+        <span className="text-3xl font-bold text-white">
+          {Math.round(forecast.temp)}°
         </span>
       </div>
     </Card>
