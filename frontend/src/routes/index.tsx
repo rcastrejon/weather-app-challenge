@@ -55,9 +55,23 @@ function SearchResults() {
     select: ({ search }) => ({ search: search! }),
   })
   const { data: cities } = useSuspenseQuery(searchCitiesOptions(search))
+  if (cities.length === 0) {
+    return (
+      <div>
+        <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
+          No se encontraron resultados
+        </h2>
+        <p className="text-gray-600 dark:text-gray-400">
+          Intenta con otra búsqueda.
+        </p>
+      </div>
+    )
+  }
   return (
     <Section title="Resultados de búsqueda...">
-      {cities?.map((city) => <WeatherCard key={city.slug} city={city} />)}
+      {cities.map((city) => (
+        <WeatherCard key={city.slug} city={city} />
+      ))}
     </Section>
   )
 }

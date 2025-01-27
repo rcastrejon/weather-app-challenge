@@ -31,8 +31,8 @@ export const searchCitiesOptions = (query: string) =>
 
 async function getCityDetails(slug: string) {
   const response = await api.cities[":slug"].forecast.$get({ param: { slug } })
-  if (!response.ok) {
-    throw new Error("City not found")
+  if (!response.ok && response.status === 404) {
+    return null
   }
   const obj = await response.json()
   return obj
