@@ -11,6 +11,8 @@ export const getForecast = async (
   const url = new URL(`${BASE_URL}/forecast`)
   url.searchParams.append("lat", lat)
   url.searchParams.append("lon", lon)
+  url.searchParams.append("lang", "es")
+  url.searchParams.append("units", "metric")
   url.searchParams.append("appid", env.OPENWEATHER_API_KEY)
   const response = await fetch(url)
   if (!response.ok) {

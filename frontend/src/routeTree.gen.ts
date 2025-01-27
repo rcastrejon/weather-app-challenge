@@ -12,12 +12,19 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
+import { Route as CitySlugImport } from './routes/city.$slug'
 
 // Create/Update Routes
 
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CitySlugRoute = CitySlugImport.update({
+  id: '/city/$slug',
+  path: '/city/$slug',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -32,6 +39,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/city/$slug': {
+      id: '/city/$slug'
+      path: '/city/$slug'
+      fullPath: '/city/$slug'
+      preLoaderRoute: typeof CitySlugImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -39,32 +53,37 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/city/$slug': typeof CitySlugRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/city/$slug': typeof CitySlugRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/city/$slug': typeof CitySlugRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/city/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/city/$slug'
+  id: '__root__' | '/' | '/city/$slug'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CitySlugRoute: typeof CitySlugRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CitySlugRoute: CitySlugRoute,
 }
 
 export const routeTree = rootRoute
@@ -77,11 +96,15 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/"
+        "/",
+        "/city/$slug"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/city/$slug": {
+      "filePath": "city.$slug.tsx"
     }
   }
 }

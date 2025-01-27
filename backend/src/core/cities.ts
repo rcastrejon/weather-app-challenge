@@ -12,6 +12,8 @@ export const citySchema = z.object({
   weather: forecastSchema,
 })
 
+export type CitySchema = z.infer<typeof citySchema>
+
 export const cityDetailsSchema = z.object({
   display_name: z.string(),
   slug: z.string(),
@@ -19,6 +21,8 @@ export const cityDetailsSchema = z.object({
   long: z.string(),
   forecast: z.array(forecastSchema),
 })
+
+export type CityDetailsSchema = z.infer<typeof cityDetailsSchema>
 
 /**
  * Obtiene las ciudades populares.
