@@ -1,8 +1,21 @@
 import { Link } from "@tanstack/react-router"
 import { Card } from "./ui/card"
-import { type CitySchema } from "@acme/backend/core/cities"
 
-export function WeatherCard({ city }: { city: CitySchema }) {
+interface WeatherCardProps {
+  city: {
+    slug: string
+    display_name: string
+    weather: {
+      weather_icon: string
+      weather_description: string
+      temp: number
+      temp_max: number
+      temp_min: number
+    }
+  }
+}
+
+export function WeatherCard({ city }: WeatherCardProps) {
   const iconSrc = `/weather-conditions/${city.weather.weather_icon}.png`
   return (
     <Card className="relative border-none overflow-hidden bg-gradient-to-br from-blue-400 to-blue-600 dark:from-blue-600 dark:to-blue-800 text-white p-4 rounded-3xl shadow-lg">

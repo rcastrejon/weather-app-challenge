@@ -29,6 +29,7 @@ export function Header() {
             type="search"
             className="mt-2 !h-9 w-full sm:mt-4 sm:max-w-sm"
             placeholder="Buscar..."
+            autoComplete="off"
           />
         </form>
       </header>

@@ -20,7 +20,7 @@ export const forecastSchema = z.object({
  * servicio de OpenWeather.
  */
 export async function getForecast(lat: string, long: string) {
-  const cacheKey = `forecastz:${lat}:${long}`
+  const cacheKey = `forecast:${lat}:${long}`
   const cachedForecast = await redis.get(cacheKey)
   if (cachedForecast) {
     console.log("Cache hit ->", cacheKey)

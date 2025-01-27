@@ -1,9 +1,8 @@
 import { Header } from "@/components/header"
-import { Button } from "@/components/ui/button"
 import { WeatherCard } from "@/components/weather-card"
 import { getCitiesOptions, searchCitiesOptions } from "@/lib/api"
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query"
-import { createFileRoute, Link } from "@tanstack/react-router"
+import { createFileRoute } from "@tanstack/react-router"
 import { zodValidator } from "@tanstack/zod-adapter"
 import { z } from "zod"
 

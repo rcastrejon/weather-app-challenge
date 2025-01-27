@@ -48,7 +48,7 @@
     "@tanstack/router-devtools": "^1.97.23",
     "@tanstack/zod-adapter": "^1.97.23",
     "clsx": "^2.1.1",
-    "date-fns": "3.6.0",
+    "date-fns": "^4.1.0",
     "hono": "^4.6.19",
     "react": "^19.0.0",
     "react-day-picker": "8.10.1",
