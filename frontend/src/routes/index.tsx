@@ -10,6 +10,7 @@ import { Suspense } from "react"
 
 const searchParams = z.object({
   search: z.string().optional(),
+  from: z.string().optional(),
 })
 
 export const Route = createFileRoute("/")({
@@ -18,13 +19,13 @@ export const Route = createFileRoute("/")({
 })
 
 function HomeComponent() {
-  const { search } = Route.useSearch()
+  const { search, from } = Route.useSearch()
   return (
     <>
       <Header />
       <div className="p-4 sm:p-6 lg:p-8">
         <main>
-          {!search ? (
+          {!(from && search) ? (
             <Suspense fallback={<CitiesSkeleton count={6} />}>
               <MostPopularDestinations />
             </Suspense>
@@ -51,10 +52,10 @@ function MostPopularDestinations() {
 }
 
 function SearchResults() {
-  const { search } = Route.useSearch({
-    select: ({ search }) => ({ search: search! }),
+  const { search, from } = Route.useSearch({
+    select: ({ search, from }) => ({ search: search!, from: from! }),
   })
-  const { data: cities } = useSuspenseQuery(searchCitiesOptions(search))
+  const { data: cities } = useSuspenseQuery(searchCitiesOptions(from, search))
   if (cities.length === 0) {
     return (
       <div>
