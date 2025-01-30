@@ -4,8 +4,9 @@ import * as Cities from "../core/cities"
 
 const router = new Hono()
   .get("/cities/search", async (c) => {
+    const from = c.req.query("from")
     const query = c.req.query("q")
-    const matches = await Cities.search(query ?? "")
+    const matches = await Cities.search(from ?? "", query ?? "")
     return c.json(matches)
   })
   .get("/cities/popular", async (c) => {
