@@ -29,13 +29,13 @@ export function Header() {
             })
           }}
         >
-          <div className="relative w-full sm:max-w-sm flex gap-2">
+          <div className="relative w-full sm:max-w-lg flex gap-2">
             <Input
               value={fromInput}
               onChange={(e) => setFromInput(e.currentTarget.value)}
               type="search"
               className="mt-2 !h-9 w-full sm:mt-4"
-              placeholder="Origen..."
+              placeholder="Origen (opcional)..."
               autoComplete="off"
             />
             <Input

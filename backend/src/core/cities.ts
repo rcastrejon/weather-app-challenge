@@ -35,7 +35,15 @@ export async function getPopular() {
 /**
  * Busca ciudades por nombre y por ciudad de origen.
  */
-export async function search(from: string, query: string) {
+export async function search(query: string) {
+  const places = await getFilteredPlaces(query)
+  return await parsePlacesResponse(places)
+}
+
+/**
+ * Busca ciudades por nombre y por ciudad de origen.
+ */
+export async function searchWithOrigin(from: string, query: string) {
   let places = await ReservamosService.getPlacesWithOrigin(from, query)
   places = places.filter((place) => place.result_type === "city")
   return await parsePlacesResponse(places)

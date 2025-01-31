@@ -19,13 +19,13 @@ export const Route = createFileRoute("/")({
 })
 
 function HomeComponent() {
-  const { search, from } = Route.useSearch()
+  const { search } = Route.useSearch()
   return (
     <>
       <Header />
       <div className="p-4 sm:p-6 lg:p-8">
         <main>
-          {!(from && search) ? (
+          {!search ? (
             <Suspense fallback={<CitiesSkeleton count={6} />}>
               <MostPopularDestinations />
             </Suspense>
@@ -53,7 +53,7 @@ function MostPopularDestinations() {
 
 function SearchResults() {
   const { search, from } = Route.useSearch({
-    select: ({ search, from }) => ({ search: search!, from: from! }),
+    select: ({ search, from }) => ({ search: search!, from: from }),
   })
   const { data: cities } = useSuspenseQuery(searchCitiesOptions(from, search))
   if (cities.length === 0) {

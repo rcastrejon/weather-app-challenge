@@ -25,7 +25,7 @@ async function searchCities(from: string, query: string) {
   return obj
 }
 
-export const searchCitiesOptions = (from: string, query: string) =>
+export const searchCitiesOptions = (from: string = "", query: string) =>
   queryOptions({
     queryKey: ["search-cities", from, query],
     queryFn: () => searchCities(from, query),
