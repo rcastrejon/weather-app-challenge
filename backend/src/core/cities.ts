@@ -33,7 +33,7 @@ export async function getPopular() {
 }
 
 /**
- * Busca ciudades por nombre y por ciudad de origen.
+ * Busca ciudades por nombre
  */
 export async function search(query: string) {
   const places = await getFilteredPlaces(query)
