@@ -17,16 +17,18 @@ export const getCitiesOptions = () =>
     queryFn: getPopularCities,
   })
 
-async function searchCities(query: string) {
-  const response = await api.cities.search.$get({ query: { q: query } })
+async function searchCities(from: string, query: string) {
+  const response = await api.cities.search.$get({
+    query: { from: from, q: query },
+  })
   const obj = await response.json()
   return obj
 }
 
-export const searchCitiesOptions = (query: string) =>
+export const searchCitiesOptions = (from: string = "", query: string) =>
   queryOptions({
-    queryKey: ["search-cities", query],
-    queryFn: () => searchCities(query),
+    queryKey: ["search-cities", from, query],
+    queryFn: () => searchCities(from, query),
   })
 
 async function getCityDetails(slug: string) {

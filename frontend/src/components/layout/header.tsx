@@ -2,11 +2,13 @@ import { useNavigate, useSearch } from "@tanstack/react-router"
 import { Input } from "../ui/input"
 import { useState } from "react"
 import { RiCloseLine } from "@remixicon/react"
+import { Button } from "../ui/button"
 
 export function Header() {
-  const { search } = useSearch({ from: "/" })
+  const { search, from } = useSearch({ from: "/" })
   const navigate = useNavigate()
-  const [input, setInput] = useState(search ?? "")
+  const [qInput, setQInput] = useState(search ?? "")
+  const [fromInput, setFromInput] = useState(from ?? "")
 
   return (
     <div className="border-b border-gray-200 bg-gray-50 p-4 dark:border-gray-800 dark:bg-gray-950 sm:p-6 lg:p-8">
@@ -23,27 +25,40 @@ export function Header() {
             e.preventDefault()
             navigate({
               to: "/",
-              search: { search: input },
+              search: { from: fromInput, search: qInput },
             })
           }}
         >
-          <div className="relative w-full sm:max-w-sm flex gap-2">
+          <div className="relative w-full sm:max-w-lg flex gap-2">
             <Input
-              value={input}
-              onChange={(e) => setInput(e.currentTarget.value)}
+              value={fromInput}
+              onChange={(e) => setFromInput(e.currentTarget.value)}
+              type="search"
+              className="mt-2 !h-9 w-full sm:mt-4"
+              placeholder="Origen (opcional)..."
+              autoComplete="off"
+            />
+            <Input
+              value={qInput}
+              onChange={(e) => setQInput(e.currentTarget.value)}
               type="search"
               className="mt-2 !h-9 w-full sm:mt-4"
               placeholder="Buscar..."
               autoComplete="off"
             />
-            {input && (
+            <Button type="submit" className="h-9 mt-2 sm:mt-4">
+              Buscar
+            </Button>
+            {(qInput || fromInput) && (
               <button
                 type="button"
                 onClick={() => {
-                  setInput("")
+                  setQInput("")
+                  setFromInput("")
                   navigate({
                     to: "/",
                     search: undefined,
+                    from: undefined,
                   })
                 }}
                 className="mt-2 sm:mt-4 h-9 rounded-full p-1 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-400"
