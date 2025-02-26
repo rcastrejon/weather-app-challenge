@@ -2,6 +2,9 @@
   "name": "@acme",
   "private": true,
   "scripts": {
+    "dev": "bun --filter '*' dev",
+    "build": "bun --filter '*' build",
+    "serve": "NODE_ENV=production bun --filter '*' serve",
     "build:front": "bun run --cwd frontend build",
     "start:front": "NODE_ENV=production bun run --cwd frontend serve",
     "start:back": "NODE_ENV=production bun run --cwd backend src/main.ts"

@@ -4,7 +4,7 @@ const EnvSchema = z.object({
   NODE_ENV: z.string().default("development"),
   PORT: z.coerce.number().default(4000),
   OPENWEATHER_API_KEY: z.string(),
-  REDIS_URL: z.string().url(),
+  REDIS_URL: z.string().url().default("redis://"),
 })
 
 export type env = z.infer<typeof EnvSchema>
